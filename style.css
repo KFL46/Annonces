@@ -1,0 +1,9 @@
+body>nav {
+    display: flex;
+    align-items: center;
+  }
+body>nav>a {
+    text-decoration: none;
+    color: red;
+    padding: 1.5rem;
+  }
