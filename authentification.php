@@ -19,13 +19,13 @@
 		$sth->bindValue(1, trim($_GET['pseudo']), PDO::PARAM_STR);
 		$sth->execute();
 		$user = $sth->fetch();
-        var_dump($query); // vérification de la connexion de l'utilisateur
+        //var_dump($query); // vérification de la connexion de l'utilisateur
 		//	Si l'authentification est réussie…
 		if($user !== false AND password_verify(trim($_GET['passwordhash']), $user['passwordhash']))
 		{
 			session_start();
 			$_SESSION['petitesannonces'] = intval($user['id']);
-            var_dump($_SESSION);
+            //var_dump($_SESSION);
 			//	Redirection vers la page privée
 			header('Location: ./tableaudebord.php');
 		}

@@ -26,7 +26,7 @@
 	$sth -> bindValue(1,($_SESSION['petitesannonces']), PDO::PARAM_INT);
 	$sth -> execute();
 	$annonces = $sth->fetchAll();
-	var_dump($annonces); // vérification affichage annonce
+	//var_dump($annonces); // vérification affichage annonce
 
 	//	Inclusion du HTML
 	include 'tableaudebord.phtml';
