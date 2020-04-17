@@ -23,4 +23,4 @@ $sth->execute();
 	//	Redirection vers la page d'accueil
 	header('Location:./').
     exit;
-?>
+?> 

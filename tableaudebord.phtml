@@ -3,18 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css" media="all"/>
-<title></title>
+<link rel="stylesheet" href="style.css" media="all">
 </head>
 <body>
 <h1>PETITES ANNONCES</h1>
 <nav>
-    <a href="#" class="active">Déconnexion</a>
-    <a href="#">Annonces parues</a>
-    <a href="#">Créer votre annonce</a>
+    <a href="deconnexion.php" class="active">Déconnexion</a>
+    <a href="tableaudebord.php">Annonces parues</a>
+    <a href="insertion.php">Créer votre annonce</a>
 </nav>
+<?php foreach($annonces as $key => $annonce): ?>
+    <!--<a href="./insertion.php?key=<?= htmlspecialchars($key) ?>"></a>-->
+    <article>
+    <h3><?= htmlspecialchars($annonce['titre']) ?></h3>
+    <p><?= htmlspecialchars($annonce['descriptif']) ?></p>
+    <span><?= htmlspecialchars($annonce['prix']) ?></span>
+    </article>
+    <?php endforeach ?>
 </body>
 </html>
-</body>
-</html>
+
 

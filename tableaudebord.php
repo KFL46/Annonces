@@ -9,8 +9,7 @@
 				PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
 			]
 		);
-	
-	session_start();
+		session_start();
 
 	//	Si l'utilisateur n'est pas authentifié
 	if(!array_key_exists('petitesannonces', $_SESSION)){
@@ -18,7 +17,6 @@
 		header('Location: ./');
 			exit;
 	}
-
 // //////////////////// RECUPERATION DES DONNEES DE LA BDD ////////////////////////////
 //On sélectionne les annonces 
 	$query='SELECT * FROM annonces WHERE idutilisateur = ?';
@@ -30,3 +28,4 @@
 
 	//	Inclusion du HTML
 	include 'tableaudebord.phtml';
+	?>
