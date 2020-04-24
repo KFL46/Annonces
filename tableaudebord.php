@@ -28,4 +28,4 @@
 
 	//	Inclusion du HTML
 	include 'tableaudebord.phtml';
-	?>
+	

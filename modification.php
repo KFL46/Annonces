@@ -11,20 +11,22 @@
      ]
  );
         session_start();
-        $sql = "DELETE FROM annonces WHERE id = ?";
+        $sql = "UPDATE annonces SET titre=?, descriptif=?, prix=? WHERE id = ?";
         $sth = $dbh->prepare($sql);
-        $sth->bindValue(1,($_GET['key']), PDO::PARAM_INT);
+        $sth->bindValue(1, trim($_GET['titre']), PDO::PARAM_STR);
+        $sth->bindValue(2, trim($_GET['descriptif']), PDO::PARAM_STR);
+        $sth->bindValue(3, trim($_GET['prix']), PDO::PARAM_STR);
+        $sth->bindValue(4,($_SESSION['petitesannonces']), PDO::PARAM_INT);
+        $sth->bindValue(4,($_GET['key']), PDO::PARAM_INT);
         $sth->execute();
-        
-        $count = $sth->rowCount();
-        print('Effacement de ' .$count. ' entrées.');
+        $annonces = $sth->fetchAll();
+
     var_dump($_GET);
 
-
-
-
-
-
+    //header('Location:tableaudebord.php').
+    exit;
+    //	Inclusion du HTML   
+    include 'modification.phtml';
 
     //catch(PDOException $e){
     //echo "Erreur : " . $e->getMessage();
@@ -44,4 +46,3 @@
  
     // header('Location: authentification.php');
  
-?>
