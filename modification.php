@@ -1,4 +1,6 @@
 <?php
+if(!empty($_GET))
+{
  
  $dbh = new PDO
  (
@@ -21,28 +23,8 @@
         $sth->execute();
         $annonces = $sth->fetchAll();
 
-    var_dump($_GET);
 
     //header('Location:tableaudebord.php').
-    exit;
     //	Inclusion du HTML   
-    include 'modification.phtml';
-
-    //catch(PDOException $e){
-    //echo "Erreur : " . $e->getMessage();
-    //}
-       // Supression des variables de session et de la session
-       // $_SESSION = array();
-        //session_destroy();
- 
-        // Supression des cookies de connexion automatique
-        //setcookie('utilisateur', '');
-        //setcookie('passwordhache', '');
-         
-        //header('Location: index.php');
- 
-    //}
-    //else{ // Dans le cas contraire on t'empêche d'accéder à cette page en te redirigeant vers la page que tu veux.
- 
-    // header('Location: authentification.php');
- 
+}
+include 'modification.phtml';

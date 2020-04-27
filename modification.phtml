@@ -9,7 +9,6 @@
 <body>
 <h1>PETITES ANNONCES</h1>
 <?php foreach($annonces as $key => $annonce): ?>
-    <a href="./modification.php?key=<?= intval($annonce['id']) ?>">Modifier</a>
  <article>
     <h3><?= htmlspecialchars($annonce['titre']) ?></h3>
     <p><?= htmlspecialchars($annonce['descriptif']) ?></p>
