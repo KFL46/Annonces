@@ -1,6 +1,4 @@
 <?php
-if(!empty($_GET))
-{
  
  $dbh = new PDO
  (
@@ -13,12 +11,15 @@ if(!empty($_GET))
      ]
  );
         session_start();
+    if($_SESSION['petitesannonces'] == false){
         $query='SELECT * FROM annonces WHERE idutilisateur = ?';
         $sth = $dbh->prepare($sql);
         $sth -> bindValue(1,($_SESSION['petitesannonces']), PDO::PARAM_INT);
         $sth->execute();
         //$annonces = $sth->fetchAll();
-
+        header('Location:tableaudebord.php').
+    }
+    else{
         $sql = "UPDATE annonces SET titre=?, descriptif=?, prix=? WHERE id = ?";
         $sth = $dbh->prepare($sql);
         $sth->bindValue(1, trim($_GET['titre']), PDO::PARAM_STR);
@@ -28,9 +29,6 @@ if(!empty($_GET))
         $sth->bindValue(4,($_GET['key']), PDO::PARAM_INT);
         $sth->execute();
         $annonces = $sth->fetchAll();
-
-
-    header('Location:tableaudebord.php').
-}    
+    }
 //	Inclusion du HTML   
 include 'modification.phtml';
