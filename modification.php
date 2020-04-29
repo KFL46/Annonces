@@ -11,7 +11,7 @@
      ]
  );
         session_start();
-    if($_SESSION['petitesannonces'] == false){
+    if(array_key_exists('titre', $_GET)){
         $query='SELECT * FROM annonces WHERE idutilisateur = ?';
         $sth = $dbh->prepare($sql);
         $sth -> bindValue(1,($_SESSION['petitesannonces']), PDO::PARAM_INT);
