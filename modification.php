@@ -11,13 +11,14 @@
      ]
  );
         session_start();
-    if(array_key_exists('titre', $_GET)){
-        $query='SELECT * FROM annonces WHERE idutilisateur = ?';
+    if(!array_key_exists('titre', $_GET)){
+        $sql='SELECT * FROM annonces WHERE idutilisateur = ?';
         $sth = $dbh->prepare($sql);
         $sth -> bindValue(1,($_SESSION['petitesannonces']), PDO::PARAM_INT);
         $sth->execute();
-        //$annonces = $sth->fetchAll();
-        header('Location:tableaudebord.php').
+        $annonces = $sth->fetch();
+        //	Inclusion du HTML   
+    include 'modification.phtml';
     }
     else{
         $sql = "UPDATE annonces SET titre=?, descriptif=?, prix=? WHERE id = ?";
@@ -29,6 +30,6 @@
         $sth->bindValue(4,($_GET['key']), PDO::PARAM_INT);
         $sth->execute();
         $annonces = $sth->fetchAll();
+        header('Location:tableaudebord.php').
+
     }
-//	Inclusion du HTML   
-include 'modification.phtml';
