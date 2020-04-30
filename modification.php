@@ -16,20 +16,18 @@
         $sth = $dbh->prepare($sql);
         $sth -> bindValue(1,($_SESSION['petitesannonces']), PDO::PARAM_INT);
         $sth->execute();
-        $annonces = $sth->fetch();
+        $annonce = $sth->fetch();
         //	Inclusion du HTML   
     include 'modification.phtml';
     }
     else{
-        $sql = "UPDATE annonces SET titre=?, descriptif=?, prix=? WHERE id = ?";
+        $sql = "UPDATE annonces SET titre=?, descriptif=?, prix=? WHERE 'key' = ?";
         $sth = $dbh->prepare($sql);
         $sth->bindValue(1, trim($_GET['titre']), PDO::PARAM_STR);
         $sth->bindValue(2, trim($_GET['descriptif']), PDO::PARAM_STR);
         $sth->bindValue(3, trim($_GET['prix']), PDO::PARAM_STR);
-        $sth->bindValue(4,($_SESSION['petitesannonces']), PDO::PARAM_INT);
         $sth->bindValue(4,($_GET['key']), PDO::PARAM_INT);
         $sth->execute();
-        $annonces = $sth->fetchAll();
-        header('Location:tableaudebord.php').
-
+        $annonce = $sth->fetchAll();
+        header('Location:tableaudebord.php');
     }
