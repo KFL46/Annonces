@@ -13,7 +13,7 @@
 
 	//	Si l'utilisateur n'est pas authentifié
 	if(!array_key_exists('petitesannonces', $_SESSION)){
-				//Redirection vers la page d'accueil
+	//Redirection vers la page d'accueil
 		header('Location: ./');
 			exit;
 	}
@@ -24,8 +24,7 @@
 	$sth -> bindValue(1,($_SESSION['petitesannonces']), PDO::PARAM_INT);
 	$sth -> execute();
 	$annonces = $sth->fetchAll();
-	//var_dump($annonces); // vérification affichage annonce
-
+		
 	//	Inclusion du HTML
 	include 'tableaudebord.phtml';
 	

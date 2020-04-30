@@ -15,33 +15,7 @@
         $sth = $dbh->prepare($sql);
         $sth->bindValue(1,($_GET['key']), PDO::PARAM_INT);
         $sth->execute();
-        
+        header('Location:tableaudebord.php').
+
         $count = $sth->rowCount();
         print('Effacement de ' .$count. ' entrées.');
-    var_dump($_GET);
-
-
-
-
-
-
-
-    //catch(PDOException $e){
-    //echo "Erreur : " . $e->getMessage();
-    //}
-       // Supression des variables de session et de la session
-       // $_SESSION = array();
-        //session_destroy();
- 
-        // Supression des cookies de connexion automatique
-        //setcookie('utilisateur', '');
-        //setcookie('passwordhache', '');
-         
-        //header('Location: index.php');
- 
-    //}
-    //else{ // Dans le cas contraire on t'empêche d'accéder à cette page en te redirigeant vers la page que tu veux.
- 
-    // header('Location: authentification.php');
- 
-?>

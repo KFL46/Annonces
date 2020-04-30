@@ -14,13 +14,13 @@ $dbh = new PDO
     ]
 );
 //	Ajout de l'utilisateur
-$query = 'INSERT INTO utilisateurs (utilisateur, passwordhash) VALUES (?, ?)';
-$sth = $dbh->prepare($query);
-$sth->bindValue(1, trim($_GET['pseudo']), PDO::PARAM_STR);
-$sth->bindValue(2, password_hash(trim($_GET['passwordhash']), PASSWORD_BCRYPT), PDO::PARAM_STR);
-$sth->execute();
+    $query = 'INSERT INTO utilisateurs (utilisateur, passwordhash) VALUES (?, ?)';
+    $sth = $dbh->prepare($query);
+    $sth->bindValue(1, trim($_GET['pseudo']), PDO::PARAM_STR);
+    $sth->bindValue(2, password_hash(trim($_GET['passwordhash']), PASSWORD_BCRYPT), PDO::PARAM_STR);
+    $sth->execute();
 }
 	//	Redirection vers la page d'accueil
-	header('Location:./').
-    exit;
+	header('Location:./');
+    
 ?> 

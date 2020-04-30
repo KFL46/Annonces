@@ -20,9 +20,8 @@
     $sth->bindValue(1, trim($_GET['titre']), PDO::PARAM_STR);
     $sth->bindValue(2, trim($_GET['descriptif']), PDO::PARAM_STR);
     $sth->bindValue(3, trim($_GET['prix']), PDO::PARAM_STR);
-    $sth -> bindValue(4,($_SESSION['petitesannonces']), PDO::PARAM_INT);
+    $sth->bindValue(4, ($_SESSION['petitesannonces']), PDO::PARAM_INT);
     $sth->execute();
-    header('Location: ./tableaudebord.php');
 }
     //	Inclusion du HTML   
     include 'profil.phtml';
