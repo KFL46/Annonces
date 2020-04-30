@@ -15,7 +15,7 @@
     if(!array_key_exists('titre', $_GET)){
         $sql='SELECT * FROM annonces WHERE id = ?';
         $sth = $dbh->prepare($sql);
-        $sth -> bindValue(1,($_SESSION['petitesannonces']), PDO::PARAM_INT);
+        $sth->bindValue(1,($_GET['key']), PDO::PARAM_INT);
         $sth->execute();
         $annonce = $sth->fetch();
         //	Inclusion du HTML   
@@ -23,13 +23,14 @@
     } 
     // ensuite modification de l'annonce
     else{
-        $sql = "UPDATE annonces SET titre=?, descriptif=?, prix=? WHERE id = ?";
+        $sql = 'UPDATE annonces SET titre=?, descriptif=?, prix=? WHERE id = ?';
         $sth = $dbh->prepare($sql);
         $sth->bindValue(1, trim($_GET['titre']), PDO::PARAM_STR);
         $sth->bindValue(2, trim($_GET['descriptif']), PDO::PARAM_STR);
         $sth->bindValue(3, trim($_GET['prix']), PDO::PARAM_STR);
         $sth->bindValue(4,($_GET['key']), PDO::PARAM_INT);
         $sth->execute();
+        // redirection vers l'affichage de la page annonces parues
         header('Location:tableaudebord.php');
         exit;
     }
