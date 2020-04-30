@@ -22,6 +22,10 @@
     $sth->bindValue(3, trim($_GET['prix']), PDO::PARAM_STR);
     $sth->bindValue(4, ($_SESSION['petitesannonces']), PDO::PARAM_INT);
     $sth->execute();
+    // redirection vers l'affichage de la page annonces parues
+    header('Location:tableaudebord.php');
+    exit;
+    
 }
     //	Inclusion du HTML   
     include 'profil.phtml';
