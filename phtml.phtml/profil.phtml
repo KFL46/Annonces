@@ -19,12 +19,13 @@
     <input type="text" name="prix" placeholder="Prix">
     <input type="text" id="idutilisateur" placeholder="Pseudo">
 </fieldset>
-    <input type="submit" name="nom" value="Valider">
+<input type="submit" name="nom" value="Valider">
 </form>
-<form action="./" method="post" enctype="multipart/form-data">
-	<input type="hidden" name="MAX_FILE_SIZE" value="3000000">
-	<input type="file" name="monFichier" accept="image/png, image/jpeg">
-	<button type="submit">Envoyer</button>
+<form action="./insertion1.php" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="MAX_FILE_SIZE" value="<?= MAX_FILE_SIZE ?>">
+        <input type="file" name="images[]" multiple accept="<?= implode(',', MIME_TYPES_ACCEPTED) ?>">
+        <button type="submit">Envoyer</button>
 </form>
+
 </body>
 </html>

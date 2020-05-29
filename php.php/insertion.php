@@ -58,6 +58,8 @@ if(array_key_exists('urlImage', $_FILES))
     $sth->bindValue(1, trim($_POST['urlImage']), PDO::PARAM_STR);
     $sth->execute();
 
+    var_dump($_FILES);
+    
     // redirection vers l'affichage de la page annonces parues
     header('Location:tableaudebord.php');
     exit;
