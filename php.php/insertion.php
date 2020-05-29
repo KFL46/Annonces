@@ -53,10 +53,14 @@ if(array_key_exists('urlImage', $_FILES))
     $sth->bindValue(4, ($_SESSION['petitesannonces']), PDO::PARAM_INT);
     $sth->execute();
     // Ajout des images
-    $query = 'INSERT INTO images (urlImage) VALUE (?)';
+    $query = 'INSERT INTO images (urlImage) VALUE (:urlImage)';
     $sth = $dbh->prepare($query);
-    $sth->bindValue(1, trim($_POST['urlImage']), PDO::PARAM_STR);
+    $sth->bindValue(":urlImage", $filePaths[$index], PDO::PARAM_STR);
     $sth->execute();
+    foreach ($filePaths as $index => $filePath) {
+        move_uploaded_file($_FILES['images']['tmp_name'][$index], $filePath);
+        var_dump($filePath);
+    }
 
     var_dump($_FILES);
     

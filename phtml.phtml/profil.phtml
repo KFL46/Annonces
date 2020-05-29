@@ -21,7 +21,7 @@
 </fieldset>
 <input type="submit" name="nom" value="Valider">
 </form>
-<form action="./insertion1.php" method="POST" enctype="multipart/form-data">
+<form action="insertion.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="MAX_FILE_SIZE" value="<?= MAX_FILE_SIZE ?>">
         <input type="file" name="images[]" multiple accept="<?= implode(',', MIME_TYPES_ACCEPTED) ?>">
         <button type="submit">Envoyer</button>
