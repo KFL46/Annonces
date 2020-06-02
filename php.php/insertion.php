@@ -1,4 +1,8 @@
 <?php
+define('MIME_TYPES_ACCEPTED', ['image/png', 'image/jpeg']);
+define('MAX_FILE_SIZE', 30000000);
+define('UPLOADED_FILES_FOLDER_PATH', './uploads');
+
    if(!empty($_GET))
    {
    

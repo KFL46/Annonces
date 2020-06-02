@@ -14,9 +14,11 @@ $dbh = new PDO
     ]
 );
 //	Ajout de l'utilisateur
-    $query = 'INSERT INTO utilisateurs (utilisateur, passwordhash) VALUES (?, ?)';
+    $query = 'INSERT INTO utilisateurs (utilisateur, email, passwordhash) VALUES (:utilisateur, :email, :passwordhash)';
     $sth = $dbh->prepare($query);
     $sth->bindValue(1, trim($_GET['pseudo']), PDO::PARAM_STR);
+    $sth->bindValue(':email', trim($_POST['email']), PDO::PARAM_STR);
+
     $sth->bindValue(2, password_hash(trim($_GET['passwordhash']), PASSWORD_BCRYPT), PDO::PARAM_STR);
     $sth->execute();
 }

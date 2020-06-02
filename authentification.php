@@ -14,9 +14,9 @@
 			]
 		);
 		//	Connexion de l'utilisateur
-		$query = 'SELECT id, passwordhash FROM utilisateurs WHERE utilisateur = ?';
+		$query = 'SELECT id, passwordhash FROM utilisateurs WHERE email = :email';
 		$sth = $dbh->prepare($query);
-		$sth->bindValue(1, trim($_GET['pseudo']), PDO::PARAM_STR);
+		$sth->bindValue(':email', trim($_GET['email']), PDO::PARAM_STR);
 		$sth->execute();
 		$user = $sth->fetch();
         //var_dump($query); // vérification de la connexion de l'utilisateur
