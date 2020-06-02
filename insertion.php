@@ -1,6 +1,6 @@
 <?php
 
-var_dump($_FILES);
+//var_dump($_FILES);
 
 define('MIME_TYPES_ACCEPTED', ['image/png', 'image/jpeg']);
 define('MAX_FILE_SIZE', 30000000);
@@ -71,6 +71,7 @@ if(!empty($_GET))
     $sth->bindValue(3, trim($_GET['prix']), PDO::PARAM_STR);
     $sth->bindValue(4, ($_SESSION['petitesannonces']), PDO::PARAM_INT);
     $sth->execute();
+    var_dump($_GET);
     // Ajout des images
     $query = 'INSERT INTO images (urlImage) VALUE (:urlImage)';
     $sth = $dbh->prepare($query);
@@ -83,7 +84,8 @@ if(!empty($_GET))
 
     var_dump($_FILES);
     
-    // redirection vers l'affichage de la page annonces parues
+    //redirection vers l'affichage de la page annonces parues
+    echo 'Est un test';
     header('Location:tableaudebord.php');
     exit;
 }
