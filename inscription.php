@@ -1,6 +1,6 @@
 
 <?php
-    if(!empty($_GET))
+    if(!empty($_POST))
 {
 
 $dbh = new PDO
@@ -16,10 +16,9 @@ $dbh = new PDO
 //	Ajout de l'utilisateur
     $query = 'INSERT INTO utilisateurs (utilisateur, email, passwordhash) VALUES (:utilisateur, :email, :passwordhash)';
     $sth = $dbh->prepare($query);
-    $sth->bindValue(1, trim($_GET['pseudo']), PDO::PARAM_STR);
+    $sth->bindValue(':utilisateur' , trim($_POST['pseudo']), PDO::PARAM_STR);
     $sth->bindValue(':email', trim($_POST['email']), PDO::PARAM_STR);
-
-    $sth->bindValue(2, password_hash(trim($_GET['passwordhash']), PASSWORD_BCRYPT), PDO::PARAM_STR);
+    $sth->bindValue(':passwordhash', password_hash(trim($_POST['passwordhash']), PASSWORD_BCRYPT), PDO::PARAM_STR);
     $sth->execute();
 }
 	//	Redirection vers la page d'accueil

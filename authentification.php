@@ -1,6 +1,6 @@
 <?php
 	//	Traitement de l'authentification s'il a été soumis
-	if(!empty($_GET))
+	if(!empty($_POST))
 	{
 		//	Connexion à la base de données
 		$dbh = new PDO
@@ -16,18 +16,18 @@
 		//	Connexion de l'utilisateur
 		$query = 'SELECT id, passwordhash FROM utilisateurs WHERE email = :email';
 		$sth = $dbh->prepare($query);
-		$sth->bindValue(':email', trim($_GET['email']), PDO::PARAM_STR);
+		$sth->bindValue(':email', trim($_POST['email']), PDO::PARAM_STR);
 		$sth->execute();
 		$user = $sth->fetch();
         //var_dump($query); // vérification de la connexion de l'utilisateur
 		//	Si l'authentification est réussie…
-		if($user !== false AND password_verify(trim($_GET['passwordhash']), $user['passwordhash']))
+		if($user !== false AND password_verify(trim($_POST['passwordhash']), $user['passwordhash']))
 		{
 			session_start();
 			$_SESSION['petitesannonces'] = intval($user['id']);
             //var_dump($_SESSION);
 			//	Redirection vers la page privée
-			header('Location: ./tableaudebord.php');
+			header('Location: tableaudebord.php');
 		}
 		//	Sinon…
 		else
