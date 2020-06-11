@@ -2,7 +2,7 @@
 
 //var_dump($_FILES);
 
-define('MIME_TYPES_ACCEPTED', ['image/png', 'image/jpeg']);
+define('MIME_TYPES_ACCEPTED', ['image/png', 'image/jpg']);
 define('MAX_FILE_SIZE', 30000000);
 define('UPLOADED_FILES_FOLDER_PATH', 'uploaded-files');
 //var_dump($_POST);
@@ -67,13 +67,14 @@ if(!empty($_POST))
         $sth = $dbh->prepare($query);
         $sth->bindValue(1, trim($_POST['titre']), PDO::PARAM_STR);
         $sth->bindValue(2, trim($_POST['descriptif']), PDO::PARAM_STR);
-        $sth->bindValue(3, trim($_POST['prix']), PDO::PARAM_STR);
-        $sth->bindValue(4, ($_SESSION['petitesannonces']), PDO::PARAM_INT);
+        $sth->bindValue(3, trim($_POST['prix']), PDO::PARAM_STR);        
+        $sth->bindValue(5, ($_SESSION['petitesannonces']), PDO::PARAM_INT);
         $sth->execute();
         var_dump($_GET);
         // Ajout des images
-        $query = 'INSERT INTO images (urlImage) VALUE (:urlImage)';
-        $sth = $dbh->prepare($query);
+        $query = 'INSERT INTO images (idannonce, urlImage) VALUE (:idannonce,:urlImage)';
+        $sth = $dbh->prepare($query);      
+         $sth->bindValue(":idannonce", $idannonce, PDO::PARAM_INT);
         $sth->bindValue(":urlImage", $filePaths[$index], PDO::PARAM_STR);
         $sth->execute();
         foreach ($filePaths as $index => $filePath) {
@@ -89,8 +90,8 @@ if(!empty($_POST))
     }
 
 }
-        var_dump($_FILES);
-        var_dump($_POST);
+       // var_dump($_FILES);
+        //var_dump($_POST);
 
     //	Inclusion du HTML   
     include 'profil.phtml';
